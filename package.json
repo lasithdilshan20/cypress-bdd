@@ -1,0 +1,30 @@
+{
+  "name": "eiplyautomation",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get your application up and running.",
+  "main": "index.js",
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://lasith_dilshan@bitbucket.org/lasith_dilshan/erply_automation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/lasith_dilshan/erply_automation/issues"
+  },
+  "homepage": "https://bitbucket.org/lasith_dilshan/erply_automation#readme",
+  "devDependencies": {
+    "cypress": "9.6.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-xpath": "^1.8.0"
+  },
+  "dependencies": {
+    "cypress-iframe": "^1.0.1"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "locationPOS": {
+    "title": "[data-testid=title]",
+    "warehouseName": "[data-testid=warehouse-name]"
+  }
+  }

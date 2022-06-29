@@ -1,0 +1,6 @@
+{
+  "clientCode": "[name=clientCode]",
+  "username": "[name=username]",
+  "password": "[name=password]",
+  "login": "[data-testid=login-clockin-button]"
+}

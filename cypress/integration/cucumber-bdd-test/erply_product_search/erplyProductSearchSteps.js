@@ -1,13 +1,17 @@
 import {Given,When,Then,And} from "cypress-cucumber-preprocessor/steps";
+const loginPage = require('../../../pages/login');
+const locationPage = require('../../../pages/location');
+const mainPage = require('../../../pages/main');
 const baseUrl = Cypress.config().baseUrl;
+
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false
 })
 function I_FillLoginData() {
-    cy.get('[name=clientCode]').type("104572");
-    cy.get('[name=username]').type("testassignment");
-    cy.get('[name=password]').type("PosTestAssignment123");
-    cy.get('[data-testid=login-clockin-button]').click();
+    cy.get(loginPage.clientCode).type("104572");
+    cy.get(loginPage.username).type("testassignment");
+    cy.get(loginPage.password).type("PosTestAssignment123");
+    cy.get(loginPage.login).click();
 }
 beforeEach(() => {
     cy.visit(baseUrl);
@@ -22,69 +26,86 @@ When('I enter valid credentials', ()=>{
 })
 
 Then('I should see the POS title is {string}', pageTitle=>{
-    cy.get('[data-testid=title]').should('contain', pageTitle);
+    cy.get(locationPage.locationPOS.title).should('contain', pageTitle);
 })
 
 Given('I am on the select location page', function (){
     cy.title().should('contain', 'ERPLY Login');
     I_FillLoginData();
-    cy.get('[data-testid=warehouse-name]').should('contain', 'Location #1');
+    cy.get(locationPage.locationPOS.warehouseName).should('contain', 'Location #1');
 })
 
 When('I click on {string}', (locationNo)=>{
-    cy.get('[data-testid=warehouse-name]').contains(locationNo).click();
+    cy.get(locationPage.locationPOS.warehouseName).contains(locationNo).click();
 })
 
 Then('I should see the dashboard page with {string} as the user name', userName=>{
-    cy.get('[data-testid=employee-name]').should('contain', userName);
+    cy.get(mainPage.user.name).should('contain', userName);
 })
 
 Given('I am on the select main page', function (){
     cy.title().should('contain', 'ERPLY Login');
     I_FillLoginData();
-    cy.get('[data-testid=warehouse-name]').should('contain', 'Location #1');
-    cy.get('[data-testid=warehouse-name]').contains("Location #1").click();
+    cy.get(locationPage.locationPOS.warehouseName).should('contain', 'Location #1');
+    cy.get(locationPage.locationPOS.warehouseName).contains("Location #1").click();
 })
 
 When('I search product by name {string}', (productName)=>{
-    cy.get('[data-testid=product-search-input] #customer-search-input').should('be.visible');
-    cy.get('[data-testid=product-search-input] #customer-search-input').type(productName);
-    cy.get('.MuiTableCell-alignRight').click();
+    cy.get(mainPage.product.searchInput).should('be.visible');
+    cy.get(mainPage.product.searchInput).type(productName);
+    cy.get(mainPage.product.searchButton).click();
 })
 
 Then('I should see the product details page with {string} as the product name', productName=>{
-    cy.get(`div.product-view`).should('contain', productName);
+    cy.get(mainPage.product.productView).should('contain', productName);
 })
 
 Given('I am on the select main page', function (){
     cy.title().should('contain', 'ERPLY Login');
     I_FillLoginData();
-    cy.get('[data-testid=warehouse-name]').should('contain', 'Location #1');
-    cy.get('[data-testid=warehouse-name]').contains("Location #1").click();
+    cy.get(locationPage.locationPOS.warehouseName).should('contain', 'Location #1');
+    cy.get(locationPage.locationPOS.warehouseName).contains("Location #1").click();
 })
 
 When('I search product by code {string}', (productCode)=>{
-    cy.get('[data-testid=product-search-input] #customer-search-input').should('be.visible');
-    cy.get('[data-testid=product-search-input] #customer-search-input').type(productCode);
-    cy.get('.MuiTableCell-alignRight').click();
+    cy.get(mainPage.product.searchInput).should('be.visible');
+    cy.get(mainPage.product.searchInput).type(productCode);
+    cy.get(mainPage.product.searchButton).click();
 })
 
 Then('I should see the product details page with {string} as the product code', productCode=>{
-    cy.get(`div.product-view`).should('contain', productCode);
+    cy.get(mainPage.product.productView).should('contain', productCode);
 })
 
 Given('I am on the select main page', function (){
     cy.title().should('contain', 'ERPLY Login');
     I_FillLoginData();
-    cy.get('[data-testid=warehouse-name]').should('contain', 'Location #1');
-    cy.get('[data-testid=warehouse-name]').contains("Location #1").click();
+    cy.get(locationPage.locationPOS.warehouseName).should('contain', 'Location #1');
+    cy.get(locationPage.locationPOS.warehouseName).contains("Location #1").click();
 })
 
 When('I search invalid product name {string}', (invalidProductName)=>{
-    cy.get('[data-testid=product-search-input] #customer-search-input').should('be.visible');
-    cy.get('[data-testid=product-search-input] #customer-search-input').type(invalidProductName);
+    cy.get(mainPage.product.searchInput).should('be.visible');
+    cy.get(mainPage.product.searchInput).type(invalidProductName);
 })
 
 Then('I should see the error message {string}', (errMsg)=>{
-    cy.get(`[data-testid=product-results-body]`).should('contain', errMsg);
+    cy.get(mainPage.product.productResult).should('contain', errMsg);
+})
+
+Given('I am on the select main page', function (){
+    cy.title().should('contain', 'ERPLY Login');
+    I_FillLoginData();
+    cy.get(locationPage.locationPOS.warehouseName).should('contain', 'Location #1');
+    cy.get(locationPage.locationPOS.warehouseName).contains("Location #1").click();
+})
+
+When('I search product name {string}', (ProductName)=>{
+    cy.get(mainPage.product.searchInput).should('be.visible');
+    cy.get(mainPage.product.searchInput).type(ProductName);
+    cy.get(mainPage.product.searchButton).click();
+})
+
+Then('I should see the price {string}', (productPrice)=>{
+    cy.get(mainPage.product.productView).should('contain', productPrice);
 })

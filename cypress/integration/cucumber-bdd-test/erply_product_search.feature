@@ -24,3 +24,8 @@ Feature:  ERPLY Point of Sale product search
     Given I am on the select main page
     When I search invalid product name "invalid product name"
     Then I should see the error message "No results found."
+
+  Scenario: Verify the pries of the product
+    Given I am on the select main page
+    When I search product name "Example product"
+    Then I should see the price "12.00"

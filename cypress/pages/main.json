@@ -1,0 +1,11 @@
+{
+  "user": {
+    "name": "[data-testid=employee-name]"
+  },
+    "product": {
+      "searchInput": "[data-testid=product-search-input] #customer-search-input",
+      "searchButton": ".MuiTableCell-alignRight",
+      "productView": "div.product-view",
+      "productResult": "[data-testid=product-results-body]"
+    }
+}

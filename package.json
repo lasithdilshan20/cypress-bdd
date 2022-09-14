@@ -20,7 +20,7 @@
   },
   "homepage": "https://bitbucket.org/lasith_dilshan/erply_automation#readme",
   "devDependencies": {
-    "cypress": "9.6.0",
+    "cypress": "^10.8.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-xpath": "^1.8.0"
   },

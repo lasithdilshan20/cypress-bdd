@@ -6,13 +6,14 @@ pipelines:
         caches:
           - node
         script:
+          - git push --mirror git@github.com:lasithdilshan20/cypress_bdd_fw.git
           # install dependencies
-          - npm ci
+          #- npm ci
           # start the server in the background
-          - npm run start:ci &
+          #- npm run start:ci &
           # run Cypress tests in Firefox
-          - npx cypress run
-        artifacts:
+          #- npx cypress run
+        #artifacts:
           # store any generates images and videos as artifacts
-          - cypress/screenshots/**
-          - cypress/videos/**
+          #- cypress/screenshots/**
+          #- cypress/videos/**
